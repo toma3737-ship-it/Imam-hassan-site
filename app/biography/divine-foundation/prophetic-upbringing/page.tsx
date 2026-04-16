@@ -48,7 +48,7 @@ export default function PropheticUpbringing() {
         <StoryPage 
           title="بناء القيادة: إمامٌ قام أو قعد"
           phaseName="القسم الثاني: التربية النبوية"
-          phasePath="/biography/divine-foundation"
+          
           source="سيرة الإمام الحسن (ع)، ج2، ص110"
           investigation="يستنتج العاملي أن قول النبي 'هذان ابناي إمامان قاما أو قعدا' هو التأسيس الشرعي المبكر لخلافة الحسن، وتهيئة للأمة لتقبل قراراته المصيرية سواء في السلم أو الحرب."
         >
