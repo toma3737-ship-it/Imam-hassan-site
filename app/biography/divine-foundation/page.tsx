@@ -1,6 +1,8 @@
+import BackButton from '@/components/BackButton';
 export default function DivineFoundationHome() {
   return (
     <main className="min-h-screen bg-background p-8 md:p-20" dir="rtl">
+      <BackButton />
       <header className="max-w-4xl mx-auto mb-20 text-center">
         <h1 className="text-5xl text-h1 font-serif mb-6">المرحلة الأولى: التأسيس الإلهي</h1>
         <div className="h-1 w-32 bg-h3 mx-auto opacity-20"></div>

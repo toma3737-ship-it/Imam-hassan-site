@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import BackButton from '@/components/BackButton';
 export default function BiographyPage() {
   const phases = [
     { id: "divine-foundation", title: "التأسيس الإلهي", label: "المرحلة الأولى", desc: "كيف صاغت السماء ملامح الإمام الأول في بيت النبوة؟", color: "border-[#4A107A]" }, // H2 الملكي
@@ -13,7 +13,7 @@ export default function BiographyPage() {
 
   return (
     <main className="min-h-screen bg-[#FDFBFF] text-right font-serif pb-20 px-6 md:px-16" dir="rtl">
-      
+      <BackButton />
       {/* القسم الافتتاحي - Hero Section الإبداعي */}
       <section className="py-24 max-w-6xl mx-auto relative overflow-hidden">
         {/* عنصر ديكوري خلفي باهت جداً بلمسة الموف */}
@@ -73,6 +73,7 @@ export default function BiographyPage() {
           </div>
         </Link>
       </div>
+      
     </main>
   );
 }

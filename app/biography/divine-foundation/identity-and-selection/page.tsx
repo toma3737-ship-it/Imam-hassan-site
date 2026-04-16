@@ -1,9 +1,10 @@
 import StoryPage from '@/components/StoryPage';
+import BackButton from '@/components/BackButton';
 
 export default function IdentitySection() {
   return (
     <main className="space-y-20 pb-20"> {/* مسافة كبيرة بين القصص */}
-      
+      <BackButton />
       {/* القصة الأولى: الولادة والتسمية */}
       <section>
         <StoryPage 
