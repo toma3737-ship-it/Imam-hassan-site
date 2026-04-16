@@ -1,7 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
 
-// تعريف الخط الأساسي
 const primaryFont = localFont({
   src: "../public/خطوط 10 3 2026/DARK.ttf", 
   variable: "--font-base",
@@ -14,16 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${primaryFont.variable} antialiased bg-[#FDFBFF]}`}>
+      {/* استخدمت اللون #FAF9FF ليكون بنفسجياً بارداً وموحداً لكل الصفحة */}
+      <body className={`${primaryFont.variable} antialiased bg-[#FAF9FF] m-0 p-0`}>
         
-        {/* الحاوية المرنة (The Responsive Wrapper) */}
-        <div className="min-h-screen w-full overflow-x-hidden">
-          
-          {/* هذا الجزء هو الذي سيحتوي المحتوى ويمنعه من التداخل على الهاتف */}
-          <main className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 md:px-12 transition-all duration-300">
+        {/* إلغاء الـ max-width والـ padding لجعل المحتوى يلمس أطراف الشاشة تلقائياً */}
+        <div className="w-full min-h-screen overflow-x-hidden">
+          <main className="w-full">
             {children}
           </main>
-          
         </div>
 
       </body>

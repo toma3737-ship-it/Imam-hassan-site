@@ -17,9 +17,7 @@ export default function BiographyPage() {
       {/* القسم الافتتاحي - Hero Section الإبداعي */}
       <section className="py-24 max-w-6xl mx-auto relative overflow-hidden">
         {/* عنصر ديكوري خلفي باهت جداً بلمسة الموف */}
-        <div className="absolute top-0 right-0 text-[30vw] font-black text-[#A656E2]/5 leading-none select-none pointer-events-none translate-x-32 -translate-y-16">
-          AL MUJTABA
-        </div>
+     
         
         <div className="relative z-10 max-w-5xl">
         

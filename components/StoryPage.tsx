@@ -1,76 +1,74 @@
-// components/StoryPage.tsx
-import Link from 'next/link';
-import { ReactNode } from 'react';
+"use client";
 
-// تعريف "المعلومات" التي يحتاجها القالب (Props)
-interface StoryProps {
-  title: string;          // عنوان القصة أو الموقف
-  phaseName: string;      // اسم القسم (مثلاً: الهوية والاصطفاء)
-  phasePath: string;      // رابط العودة للفهرس
-  children: ReactNode;    // هذا هو النص الأدبي الذي ستكتبينه
-  source: string;         // المصدر (سيرة الإمام الحسن، ج...)
-  investigation: string;  // الكلام التحقيقي للسيد جعفر
-  nextStoryPath?: string; // رابط اختياري للقصة التالية
+import { useState } from 'react';
+
+interface StoryPageProps {
+  title: string;
+  phaseName: string;
+  source: string;
+  investigation: string;
+  children: React.ReactNode;
 }
 
-export default function StoryPage({ 
-  title, 
-  phaseName, 
-  phasePath, 
-  children, 
-  source, 
-  investigation, 
-  nextStoryPath 
-}: StoryProps) {
-  return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-12 px-4 md:px-0">
-      <div className="max-w-4xl mx-auto w-full">
-        
-        {/* العناوين العلوية */}
-        <header className="mb-12 text-right">
-          <Link href={phasePath} className="text-h3 text-sm font-bold hover:underline mb-2 block">
-            {phaseName} ←
-          </Link>
-          <h2 className="text-4xl md:text-5xl text-h1 font-serif leading-tight">
-            {title}
-          </h2>
-          <div className="h-1.5 w-24 bg-h3 mt-6 rounded-full opacity-40"></div>
-        </header>
+export default function StoryPage({
+  title,
+  phaseName,
+  source,
+  investigation,
+  children,
+}: StoryPageProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-        {/* النص القصصي الأدبي */}
-        <div className="space-y-8 text-xl md:text-2xl text-text-main leading-relaxed font-light text-right">
+  return (
+    <article className="max-w-4xl mx-auto my-24 px-4 md:px-0 text-right border-b border-[#A656E2]/10 pb-16 last:border-0 relative">
+      
+      {/* الرأس والتحقيق */}
+      <header className="mb-8 border-r-4 border-[#4A107A] pr-6">
+        <span className="text-[#A656E2] font-bold text-sm block mb-2">{phaseName}</span>
+        <h2 className="text-3xl md:text-5xl font-black text-[#310055] leading-tight mb-4">
+          {title}
+        </h2>
+        
+        <div className="bg-[#A656E2]/5 p-6 rounded-2xl border border-[#A656E2]/10 shadow-sm">
+          <p className="text-[#5E2D91] text-lg md:text-xl leading-relaxed font-medium italic">
+             {investigation}
+          </p>
+          <div className="mt-4 pt-4 border-t border-[#A656E2]/10">
+             <span className="text-sm text-[#A656E2] font-bold tracking-widest uppercase">
+               المصدر: {source}
+             </span>
+          </div>
+        </div>
+      </header>
+
+      {/* منطقة النص والكبسة */}
+      <div className="relative mt-10">
+        <div 
+          className={`
+            text-xl md:text-2xl text-[#310055] leading-[1.8] space-y-8 overflow-hidden transition-all duration-1000 ease-in-out
+            ${isExpanded ? 'max-h-[none] opacity-100' : 'max-h-60 opacity-60'}
+          `}
+        >
           {children}
         </div>
 
-        {/* صندوق التحقيق العلمي (على طريقة السيد جعفر) */}
-        <footer className="mt-16 bg-h6/5 rounded-[40px] p-8 md:p-12 border border-h6/10">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-2xl">🔎</span>
-            <h3 className="text-h1 font-bold text-xl">ميزان التحقيق</h3>
-          </div>
-          
-          <div className="space-y-4 text-right">
-            <p className="text-sm font-bold text-h6 underline decoration-h3/30 underline-offset-4">
-              المصدر: {source}
-            </p>
-            <div className="text-lg leading-loose text-text-main italic">
-              {investigation}
-            </div>
-          </div>
-
-          {/* أزرار التنقل السريع */}
-          {nextStoryPath && (
-            <div className="mt-10 pt-8 border-t border-h6/10 flex justify-start">
-              <Link 
-                href={nextStoryPath} 
-                className="bg-h1 text-white px-8 py-3 rounded-full hover:bg-h3 transition-all flex items-center gap-2"
-              >
-                تابعي القصة التالية 
-              </Link>
-            </div>
-          )}
-        </footer>
+        {/* تأثير التلاشي - أضفنا pointer-events-none لكي لا يمنع الضغط */}
+        {!isExpanded && (
+          <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#FDFBFF] via-[#FDFBFF]/90 to-transparent pointer-events-none" />
+        )}
       </div>
-    </section>
+
+      {/* وضعنا الكبسة خارج حاوية التلاشي لضمان عملها */}
+      <div className="relative z-20 flex justify-center md:justify-start mt-4">
+        <button 
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="bg-[#4A107A] text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-[#5E2D91] shadow-xl transition-all active:scale-95 flex items-center gap-4 cursor-pointer"
+        >
+          <span>{isExpanded ? '▲' : '▼'}</span>
+          <span>{isExpanded ? 'طيّ التفاصيل' : 'متابعة القراءة'}</span>
+        </button>
+      </div>
+
+    </article>
   );
 }

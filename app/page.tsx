@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen bg-background font-sans pb-20 transition-colors duration-300" dir="rtl">
       
       {/* الهيدر: تم تغيير التدرج ليتناسب مع ألوانك */}
-      <header className="relative h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-b from-background to-h6/10">
+      <header className="relative h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden  bg-[#FAF9FF]">
         <div className="relative z-10">
           {}
           <h1 className="text-5xl md:text-7xl mb-6 drop-shadow-sm ">
