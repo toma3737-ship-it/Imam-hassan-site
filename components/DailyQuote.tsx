@@ -38,8 +38,10 @@ if (error) {
 
 
   if (quotes.length === 0) return null;
-
-  const dayOfYear = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 1);
+  const diffInMs = today.getTime() - startOfYear.getTime();
+  const dayOfYear = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
   const dailyQuote = quotes[dayOfYear % quotes.length];
 
   return (
