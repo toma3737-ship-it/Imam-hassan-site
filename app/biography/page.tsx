@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+
 export default function BiographyPage() {
   const phases = [
     { id: "divine-foundation", title: "التأسيس الإلهي", label: "المرحلة الأولى", desc: "كيف صاغت السماء ملامح الإمام الأول في بيت النبوة؟", color: "border-[#4A107A]" }, // H2 الملكي

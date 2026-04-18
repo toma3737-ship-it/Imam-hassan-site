@@ -14,14 +14,14 @@ export default function BackButton() {
         onClick={() => router.back()} 
         className="inline-flex items-center gap-2 text-[#A656E2] hover:text-[#310055] font-bold text-lg transition-colors group bg-transparent border-none cursor-pointer p-0"
       >
-        <span className="text-2xl group-hover:translate-x-2 transition-transform">→</span>
-        <span>الرجوع للخلف</span>
+        <span className="text-small group-hover:translate-x-2 transition-transform">→</span>
+        <span className="font-small">الرجوع للخلف</span>
       </button>
 
       {/* الزر الثاني: للعودة للفهرس العام */}
       <Link 
         href="/biography" 
-        className="text-[#5E2D91] hover:text-[#310055] font-medium text-md border-b border-[#A656E2]/30 hover:border-[#310055] transition-all"
+        className="text-[#5E2D91] hover:text-[#310055] font-small text-md border-b border-[#A656E2]/30 hover:border-[#310055] transition-all"
       >
         الفهرس العام للمشروع
       </Link>

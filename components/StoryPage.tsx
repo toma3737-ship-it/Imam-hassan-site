@@ -62,10 +62,10 @@ export default function StoryPage({
       <div className="relative z-20 flex justify-center md:justify-start mt-4">
         <button 
           onClick={() => setIsExpanded(!isExpanded)}
-          className="bg-[#4A107A] text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-[#5E2D91] shadow-xl transition-all active:scale-95 flex items-center gap-4 cursor-pointer"
+          className="bg-[#4A107A] text-white px-10 py-4  rounded-full font-bold text-p hover:bg-[#5E2D91] shadow-xl transition-all active:scale-95 flex items-center gap-4 cursor-pointer"
         >
           <span>{isExpanded ? '▲' : '▼'}</span>
-          <span>{isExpanded ? 'طيّ التفاصيل' : 'متابعة القراءة'}</span>
+          <span className="text-p">{isExpanded ? 'طيّ التفاصيل' : 'متابعة القراءة'}</span>
         </button>
       </div>
 

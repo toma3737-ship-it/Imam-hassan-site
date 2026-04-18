@@ -30,6 +30,9 @@
   src:url('/خطوط 10 3 2026/Ghadim.ttf') format(truetype)
 
 }
+style{
+font-size: medium;
+}
 
 
 
@@ -77,21 +80,24 @@ body {  background-color: var(--background);
 h1 {
   font-family: 'HeadingFont', serif;
   color: var(--h1);
+
 }
 
 h2 {
    font-family: 'HeadingFont2', serif;
    color: var(--h2); 
+  font-size: large;
 }
 p {
   font-family: 'BodyFont', sans-serif;
   color: var(--p);
+  font-size: medium;
 }
 
-h3 { color: var(--h3); }
-h4 { color: var(--h4); }
-h5 { color: var(--h5); }
-h6 { color: var(--h6); }
+h3 { color: var(--h3); font-size: small; }
+h4 { color: var(--h4); font-size: smaller; }
+h5 { color: var(--h5); font-size: smaller; }
+h6 { color: var(--h6); font-size: x-small; }
 
 @layer base{
   h1 { @apply text-h1}

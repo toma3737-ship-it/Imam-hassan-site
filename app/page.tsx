@@ -1,29 +1,26 @@
 import Link from 'next/link';
+import DailyQuote from "@/components/DailyQuote"; // تأكدي من المسار الصحيح للملف
+
+     
+ 
+
+
 export default function Home() {
   return (
     // استخدام bg-background بدلاً من الكود الثابت
     <main className="min-h-screen bg-background font-sans pb-20 transition-colors duration-300" dir="rtl">
       
       {/* الهيدر: تم تغيير التدرج ليتناسب مع ألوانك */}
-      <header className="relative h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden  bg-[#FAF9FF]">
-        <div className="relative z-10">
-          {}
-          <h1 className="text-5xl md:text-7xl mb-6 drop-shadow-sm ">
-            كريمُ آلِ البيت
-          </h1>
-          <p className="text-2xl md:text-3xl font-light max-w-3xl mx-auto leading-relaxed ">
-            حيث يلتقي الحلمُ النبوي، بالكرمِ العلوي، في سيرةِ سبطِ المصطفى 
-            <span className="font-bold"> (صلى الله عليه وآله وسلم) </span>
-          </p>
-          <div className="mt-10 animate-bounce text-4xl ">↓</div>
-        </div>
-      </header>
+     
+
+      
 
       <div className="container mx-auto px-4 max-w-6xl -mt-20 relative z-20">
         
         {/* بطاقة الترحيب */}
         <section className="bg-white/10 backdrop-blur-md rounded-[40px] p-12 shadow-xl border border-h6/20 text-center mb-20">
           {/* استخدام text-h2 و border-h3 */}
+           <DailyQuote />
           <h2 className="text-3xl  font-bold mb-8 italic text-right border-r-4 border-h3 pr-4">
             "كان يشبه رسول الله خَلقًا وخُلقًا..."
           </h2>
@@ -36,7 +33,7 @@ export default function Home() {
         
         {/* 2. هنا نضع الكبسة مغلفة بالرابط داخل المحتوى */}
         <Link href="/biography">
-          <button className="bg-btn text-btn-text px-12 py-5 rounded-2xl text-2xl font-bold hover:shadow-2xl transition-all">
+          <button className="bg-btn text-btn-text px-12 py-5 rounded-2xl text-p font-bold hover:shadow-2xl transition-all">
             اكتشفوا أسرار السيرة
           </button>
           </Link>
