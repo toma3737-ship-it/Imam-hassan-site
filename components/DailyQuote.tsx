@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
+import MessageForm from './MessageForm'; // نفترض أن الملفين في نفس المجلد components
+import { supabase } from "@/lib/supabase";
+
 
 export default function DailyQuote() {
   const [quotes, setQuotes] = useState<string[]>([]);
@@ -12,12 +15,27 @@ export default function DailyQuote() {
       .then((data) => setQuotes(data));
   }, []);
 
-  const handleSend = () => {
-    if (!userMessage.trim()) return;
-    setIsSent(true);
-    setUserMessage("");
-    setTimeout(() => setIsSent(false), 3000);
-  };
+const handleSend = async () => {
+  if (!userMessage.trim()) return; // منع إرسال رسائل فارغة
+
+  // إرسال البيانات إلى Supabase
+  const { error } = await supabase
+    .from('user-messages')
+    .insert([{ content: userMessage }]);
+    
+if (error) {
+    console.error('تفاصيل الخطأ من Supabase:', error); // هذا سيظهر الخطأ الحقيقي في الـ Console
+    alert('حدث خطأ: ' + error.message);
+  } else {
+    // نجحت العملية!
+    setIsSent(true); // تغيير الزر إلى "تم"
+    setUserMessage(''); // تفريغ الحقل
+    
+    // إعادة الزر لحالته الطبيعية بعد ثانيتين
+    setTimeout(() => setIsSent(false), 2000);
+  }
+};
+
 
   if (quotes.length === 0) return null;
 
