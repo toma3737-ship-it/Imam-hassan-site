@@ -25,7 +25,7 @@ export default function DailyQuote() {
   const dailyQuote = quotes[dayOfYear % quotes.length];
 
   return (
-    <article className="max-w-2xl w-full mx-auto my-8 pb-16 px-4 md:px-0 text-right font-serif relative">
+    <article className="max-w-3xl w-full mx-auto my-8 pb-16 px-4 md:px-0 text-right font-serif relative">
       
       {/* الترويسة والقول */}
       <header className="mb-6 border-r-4 border-[#4A107A] pr-4">
@@ -37,26 +37,28 @@ export default function DailyQuote() {
           </p>
           <div className="mt-4 pt-3 border-t border-[#A656E2]/20 flex justify-between items-center text-[10px] font-bold text-[#A656E2]">
              <span>المصدر: كلمة الإمام الحسن (ع)</span>
-             <span className="text-xs text-[#4A107A] italic">-الإمام الحسن (ع)</span>
           </div>
         </div>
       </header>
 
-      {/* بوكس رسالتك للإمام */}
+      {/* بوكس رسالتك للإمام - الحاوية الموحدة */}
       <div className="pr-4">
         <h2 className="text-2xl font-black text-[#310055] leading-tight mb-4">رسالتك للإمام اليوم</h2>
         
-        <div className="flex items-center bg-[#A656E2]/5 text-h6 border border-[#A656E2]/10 rounded-xl p-1 shadow-inner w-full">
+        {/* الحاوية (الكبسولة) */}
+        <div className="flex flex-row items-center w-full bg-[#A656E2]/5 border border-[#A656E2]/10 rounded-full p-0.5 shadow-inner">
+          
           <input 
             type="text"
             value={userMessage}
             onChange={(e) => setUserMessage(e.target.value)}
             placeholder="اكتب رسالتك هنا..."
-            className="flex-1 bg-transparent border-none focus:ring-0 px-4 py-2 text-[#310055]  text-h6 text-md placeholder-[#A656E2]/40 outline-none"
+            className="flex-grow w-full bg-transparent border-none focus:ring-0 px-3 py-2.5 md:px-5 md:py-3 text-[#310055] text-md placeholder-[#A656E2]/40 outline-none"
           />
+          
           <button 
             onClick={handleSend}
-            className="bg-[#A656E2] text-white rounded-lg px-6 py-2 font-bold hover:bg-[#5E2D91] transition-all active:scale-95 text-sm"
+            className="flex-shrink-0 bg-[#4A107A] text-white rounded-full px-4 py-3 text-xs md:text-sm font-bold hover:bg-[#5E2D91] transition-all active:scale-95 text-sm"
           >
             {isSent ? "تم ✓" : "إرسال"}
           </button>
@@ -66,4 +68,5 @@ export default function DailyQuote() {
     </article>
   );
 }
+
 
