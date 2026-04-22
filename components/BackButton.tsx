@@ -20,7 +20,7 @@ export default function BackButton() {
 
       {/* الزر الثاني: للعودة للفهرس العام */}
       <Link 
-        href="/biography" 
+        href="/discover" 
         className="text-[#5E2D91] hover:text-[#310055] font-small text-md border-b border-[#A656E2]/30 hover:border-[#310055] transition-all"
       >
         الفهرس العام للمشروع

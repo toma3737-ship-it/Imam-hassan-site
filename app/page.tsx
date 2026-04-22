@@ -33,7 +33,7 @@ export default function Home() {
           </p>
         
         {/* 2. هنا نضع الكبسة مغلفة بالرابط داخل المحتوى */}
-        <Link href="/biography">
+        <Link href="/discover">
           <button className="bg-btn text-btn-text px-12 py-5 rounded-2xl text-p font-bold hover:shadow-2xl transition-all">
             اكتشفوا أسرار السيرة
           </button>

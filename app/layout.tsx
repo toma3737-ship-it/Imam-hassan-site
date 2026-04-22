@@ -34,11 +34,32 @@ export default function RootLayout({
         
         
       </header>
+     
             {children}
+            
           </main>
+                    {/* الفوتر المعدل بالكامل ليكون النص واضحاً جداً */}
+          <footer className="w-full bg-[#310055] text-white py-8 mt-12 text-center border-t border-purple-800">
+            
+            {/* العنوان الآن باللون الأبيض الصريح ليكون واضحاً */}
+            <h3 className="text-xl font-bold mb-4 text-white">للتواصل مع المطور</h3>
+
+            {/* الروابط (تمت إضافة انستغرام وتنسيقها لتكون واضحة) */}
+            <div className="flex flex-wrap justify-center gap-6 text-lg font-semibold text-white">
+              <a href="https://t.me/Tamtam3737" target="_blank" className="hover:text-purple-300 transition-colors">تلغرام</a>
+              <a href="https://wa.me/78952582" target="_blank" className="hover:text-purple-300 transition-colors">واتساب</a>
+              <a href="https://instagram.com/" target="_blank" className="hover:text-purple-300 transition-colors">انستغرام</a>
+              <a href="mailto:forimamhasan@gmail.com" className="hover:text-purple-300 transition-colors">البريد الإلكتروني</a>
+            </div>
+
+            {/* الحقوق الآن باللون الرمادي الفاتح جداً ليكون مقروءاً بوضوح */}
+            <p className="mt-6 text-sm text-gray-200">جميع الحقوق محفوظة © 2026</p>
+          </footer>
+
         </div>
 
       </body>
+      
     </html>
   );
 }

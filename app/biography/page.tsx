@@ -54,10 +54,12 @@ export default function BiographyPage() {
 
         {/* حل جذري ومبدع لصندوق الحياة السياسية: صندوق بنفسجي ملكي مشرق */}
         <Link href="/biography/political-life" className="md:col-span-2 lg:col-span-3 group">
-          <div className="relative overflow-hidden bg-gradient-to-br from-[#4A107A] to-[#6722A6] p-12 rounded-[3.5rem] flex flex-col md:flex-row items-center justify-between gap-10 transition-all hover:from-[#310055] hover:to-[#4A107A] shadow-xl">
+        
+            
+          <div className="relative overflow-hidden bg-[#FDFBFF] p-12 rounded-[3.5rem] flex flex-col md:flex-row items-center justify-between gap-10 transition-all hover:from-[#310055] hover:to-[#4A107A] shadow-xl border-r-6 border-l-6 border-r-[#4A107A]">
             {/* عنصر ديكوري خلفي في الصندوق */}
             <div className="absolute right-0 top-0 text-[15rem] font-black text-white/5 leading-none select-none translate-y-16">
-              POLICY
+              
             </div>
 
             <div className="text-right relative z-10">
@@ -66,7 +68,7 @@ export default function BiographyPage() {
                 دراسة تحليلية مركزة تكمل الرؤية التاريخية وتجيب على تساؤلات المنهج والقيادة.
               </p>
             </div>
-            <div className="relative z-10 px-10 py-5 bg-white text-[#4A107A] rounded-full font-bold text-lg group-hover:scale-105 transition-transform shadow-md">
+            <div className="relative z-10 px-10 py-5 bg-white text-[#4A107A] rounded-full font-bold text-lg group-hover:scale-105 transition-transform shadow-md  border-1 border-r-[#4A107A]">
               عرض الملحق التحليلي
             </div>
           </div>
