@@ -1,10 +1,14 @@
-import fs from 'fs';
-import path from 'path';
+"use client"; // نحتاج هذا لأننا سنستخدم useEffect
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase"; // تأكدي أن هذا المسار صحيح لمكان ملف supabase.ts
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
-  const { category } = await params;
+export default function CategoryPage({ params }: { params: { category: string } }) {
+  // استخدام التعديل الأحدث لـ Next.js لجلب الـ params
+  const [category, setCategory] = useState<string>("");
+  const [items, setItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // 1. قاموس الأسماء العربية للمكتبات
+  // 1. قاموس الأسماء (مذهل! احتفظي به)
   const categoryNames: { [key: string]: string } = {
     pdfs: "مكتبة الكتب",
     audio: "مكتبة الصوتيات",
@@ -12,7 +16,6 @@ export default async function CategoryPage({ params }: { params: { category: str
     videos: "مكتبة الفيديوهات"
   };
 
-  // 2. قاموس نصوص الأزرار
   const actionTexts: { [key: string]: string } = {
     pdfs: "قراءة",
     audio: "استماع",
@@ -20,54 +23,51 @@ export default async function CategoryPage({ params }: { params: { category: str
     videos: "مشاهدة"
   };
 
-  const folderPath = path.join(process.cwd(), 'public', 'library', category);
+  // جلب البيانات عند تغير الـ category
+  useEffect(() => {
+    async function getParamsAndFetch() {
+      const p = await params;
+      setCategory(p.category);
+      
+      const { data, error } = await supabase
+        .from('library_items')
+        .select('*')
+        .eq('category', p.category);
 
-  let files: string[] = [];
-
-  try {
-    if (fs.existsSync(folderPath)) {
-      files = fs.readdirSync(folderPath);
+      if (data) setItems(data);
+      if (error) console.error("خطأ في جلب البيانات:", error);
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("خطأ:", error);
-  }
+    getParamsAndFetch();
+  }, [params]);
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 text-right">
-      {/* عرض الاسم العربي للمكتبة */}
       <h1 className="text-3xl font-bold text-[#310055] mb-8">
         {categoryNames[category] || `مكتبة الـ ${category}`}
       </h1>
 
       <div className="grid gap-4">
-        {files.length > 0 ? (
-          files.map((fileName) => {
-            // تحديد الزر المناسب، وإذا لم نجد نوعاً محدداً نضع "عرض" كخيار افتراضي
+        {loading ? (
+          <p className="text-center text-gray-500">جاري تحميل المحتويات...</p>
+        ) : items.length > 0 ? (
+          items.map((item) => {
             const actionText = actionTexts[category] || "عرض";
 
             return (
-              <div key={fileName} className="flex justify-between items-center bg-white p-4 rounded-lg border shadow-sm">
-                <span className="font-medium text-gray-700">{fileName}</span>
+              <div key={item.id} className="flex justify-between items-center bg-white p-4 rounded-lg border shadow-sm">
+                <span className="font-medium text-gray-700">{item.title}</span>
 
                 <div className="flex gap-2">
-                  {/* زر الفتح (قراءة/استماع/مشاهدة/عرض) */}
                   <a 
-                    href={`/library/${category}/${fileName}`} 
+                    href={item.file_url} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-gray-100 text-[#310055] px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors border border-[#310055]"
                   >
                     {actionText}
                   </a>
-
-                  {/* زر التحميل */}
-                  <a 
-                    href={`/library/${category}/${fileName}`} 
-                    download 
-                    className="bg-[#4A107A] text-white px-4 py-2 rounded-lg hover:bg-[#310055] transition-colors"
-                  >
-                    تحميل
-                  </a>
+                  {/* هنا يمكننا إزالة زر "تحميل" أو تركه ليفتح الرابط أيضاً */}
                 </div>
               </div>
             );
@@ -81,6 +81,7 @@ export default async function CategoryPage({ params }: { params: { category: str
     </main>
   );
 }
+
 
 
 
