@@ -23,5 +23,21 @@ export const biographyData = {
         ]
       }
     ]
+  },
+
+  "3": {
+    title: "الجزء الثالث: مطلع السيرة",
+    doors: [
+      {
+        doorTitle: "الباب الأول: نسب النبي ومولده",
+        chapters: [
+          {
+            id: "3-1",
+            title: "فصل: نسب النبي الشريف",
+            sections: [] // Added empty sections array to match structure, assuming no sections provided
+          }
+        ]
+      }
+    ]
   }
 };

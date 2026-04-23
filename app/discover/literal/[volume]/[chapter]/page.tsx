@@ -1,17 +1,24 @@
 import { biographyData } from "@/app/data/biography";
 import BackButton from "@/components/BackButton";
 
-// تعريف أنواع البيانات لتجنب أخطاء TypeScript
+// 1. تعريف هيكل البيانات بشكل كامل
 interface Section { heading: string; text: string; }
 interface Chapter { id: string; title: string; sections: Section[]; }
+interface Door { chapters: Chapter[]; }
+interface VolumeData { doors: Door[]; }
+
+// تعريف نوع الكائن الأساسي الذي يحتوي على الأجزاء
+type BiographyDataType = Record<string, VolumeData>;
 
 export default async function ChapterPage({ params }: { params: { volume: string; chapter: string } }) {
   const { volume, chapter } = await params;
   
-  // 1. جلب بيانات الجزء
-  const volData = (biographyData as any)[volume];
+  // 2. استخدام النوع المصرح عنه بدلاً من any
+  // نقوم بعمل Casting لـ biographyData لتصبح من النوع الذي عرفناه
+  const data = biographyData as BiographyDataType;
+  const volData = data[volume];
   
-  // 2. البحث عن الفصل المطلوب داخل الأبواب
+  // 3. البحث عن الفصل المطلوب
   let foundChapter: Chapter | null = null;
   
   if (volData) {
@@ -19,17 +26,17 @@ export default async function ChapterPage({ params }: { params: { volume: string
       const ch = door.chapters.find((c: Chapter) => c.id === chapter);
       if (ch) {
         foundChapter = ch;
-        break; // وجدنا الفصل، نخرج من الحلقة
+        break; 
       }
     }
   }
 
-  // 3. إذا لم نجد الفصل
+  // 4. إذا لم نجد الفصل
   if (!foundChapter) {
     return <div className="p-10 text-center">عذراً، هذا الفصل غير موجود.</div>;
   }
 
-  // 4. عرض المحتوى
+  // 5. عرض المحتوى
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 text-right">
        <BackButton />
