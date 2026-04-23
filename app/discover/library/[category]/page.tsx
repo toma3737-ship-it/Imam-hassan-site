@@ -1,14 +1,21 @@
-"use client"; // نحتاج هذا لأننا سنستخدم useEffect
+"use client";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase"; // تأكدي أن هذا المسار صحيح لمكان ملف supabase.ts
+import { supabase } from "@/lib/supabase";
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
-  // استخدام التعديل الأحدث لـ Next.js لجلب الـ params
+// تعريف هيكل البيانات (Interface)
+interface LibraryItem {
+  id: string;
+  title: string;
+  file_url: string;
+  category: string;
+}
+
+// تحديث النوع لـ params ليتوافق مع Next.js الحديث
+export default function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const [category, setCategory] = useState<string>("");
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<LibraryItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // 1. قاموس الأسماء (مذهل! احتفظي به)
   const categoryNames: { [key: string]: string } = {
     pdfs: "مكتبة الكتب",
     audio: "مكتبة الصوتيات",
@@ -23,9 +30,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
     videos: "مشاهدة"
   };
 
-  // جلب البيانات عند تغير الـ category
   useEffect(() => {
     async function getParamsAndFetch() {
+      // انتظار الـ params لأنها Promise
       const p = await params;
       setCategory(p.category);
       
@@ -34,7 +41,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
         .select('*')
         .eq('category', p.category);
 
-      if (data) setItems(data);
+      if (data) setItems(data as LibraryItem[]);
       if (error) console.error("خطأ في جلب البيانات:", error);
       setLoading(false);
     }
@@ -67,7 +74,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   >
                     {actionText}
                   </a>
-                  {/* هنا يمكننا إزالة زر "تحميل" أو تركه ليفتح الرابط أيضاً */}
                 </div>
               </div>
             );
@@ -81,11 +87,3 @@ export default function CategoryPage({ params }: { params: { category: string } 
     </main>
   );
 }
-
-
-
-
-
-
-
-

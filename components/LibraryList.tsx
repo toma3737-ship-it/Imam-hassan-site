@@ -1,24 +1,32 @@
 "use client";
 import { useEffect, useState } from "react";
-// استخدمي نفس المسار الذي تستخدمينه لـ supabase في مشروعك
+// تأكد أن المسار إلى ملف supabase هو المسار الصحيح في مشروعك
 import { supabase } from "../lib/supabase"; 
 
+// تعريف هيكل البيانات لضمان توافق TypeScript
+interface LibraryItem {
+  id: string;
+  title: string;
+  file_url: string;
+  category: string;
+}
+
 export default function LibraryList({ category }: { category: string }) {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<LibraryItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      // هنا نقوم بسحب البيانات من الجدول الجديد library_items
+      // جلب البيانات من جدول library_items
       const { data, error } = await supabase
         .from('library_items')
         .select('*')
-        .eq('category', category); // جلب البيانات بناءً على النوع (audio, pdf, etc)
+        .eq('category', category);
 
       if (error) {
         console.error("خطأ في جلب البيانات:", error);
       } else if (data) {
-        setItems(data);
+        setItems(data as LibraryItem[]);
       }
       setLoading(false);
     }
@@ -46,4 +54,5 @@ export default function LibraryList({ category }: { category: string }) {
     </div>
   );
 }
+
 
