@@ -1,4 +1,5 @@
 import { biographyData } from "@/app/data/biography";
+import BackButton from "@/components/BackButton";
 
 // تعريف أنواع البيانات لتجنب أخطاء TypeScript
 interface Section { heading: string; text: string; }
@@ -31,6 +32,7 @@ export default async function ChapterPage({ params }: { params: { volume: string
   // 4. عرض المحتوى
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 text-right">
+       <BackButton />
       <h1 className="text-4xl font-black text-[#310055] mb-8 border-b-4 border-[#4A107A] pb-4">
         {foundChapter.title}
       </h1>

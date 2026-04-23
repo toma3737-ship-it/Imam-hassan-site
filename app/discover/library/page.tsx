@@ -1,3 +1,4 @@
+import BackButton from '@/components/BackButton';
 import Link from 'next/link';
 
 export default function LibraryIndexPage() {
@@ -10,6 +11,7 @@ export default function LibraryIndexPage() {
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 text-right">
+       <BackButton />
       <h1 className="text-4xl font-black text-[#310055] mb-8 border-b-2 border-[#4A107A] pb-4">
         مكتبة الحسن
       </h1>

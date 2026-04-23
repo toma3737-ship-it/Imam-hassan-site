@@ -48,7 +48,7 @@ export default function RootLayout({
             <div className="flex flex-wrap justify-center gap-6 text-lg font-semibold text-white">
               <a href="https://t.me/Tamtam3737" target="_blank" className="hover:text-purple-300 transition-colors">تلغرام</a>
               <a href="https://wa.me/78952582" target="_blank" className="hover:text-purple-300 transition-colors">واتساب</a>
-              <a href="https://instagram.com/" target="_blank" className="hover:text-purple-300 transition-colors">انستغرام</a>
+              <a href="https://www.instagram.com/imam_hasan1509?igsh=Ym1zeHp3ZnVqYmRx" target="_blank" className="hover:text-purple-300 transition-colors">انستغرام</a>
               <a href="mailto:forimamhasan@gmail.com" className="hover:text-purple-300 transition-colors">البريد الإلكتروني</a>
             </div>
 

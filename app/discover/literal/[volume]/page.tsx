@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { biographyData } from "@/app/data/biography";
+import BackButton from '@/components/BackButton';
 
 // 1. تعريف شكل البيانات ليفهمها TypeScript
 interface Chapter { id: string; title: string; }
@@ -19,6 +20,7 @@ export default async function VolumePage({ params }: { params: { volume: string 
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12 text-right">
+       <BackButton />
       <h1 className="text-4xl font-black text-[#310055] mb-8">{volData.title}</h1>
       
       {volData.doors.map((door: Door, dIndex: number) => (

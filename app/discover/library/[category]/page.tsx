@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import BackButton from "@/components/BackButton";
 
 // تعريف هيكل البيانات (Interface)
 interface LibraryItem {
@@ -50,6 +51,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 text-right">
+       <BackButton />
       <h1 className="text-3xl font-bold text-[#310055] mb-8">
         {categoryNames[category] || `مكتبة الـ ${category}`}
       </h1>
