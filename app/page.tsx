@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import DailyQuote from "@/components/DailyQuote"; // تأكدي من المسار الصحيح للملف
-import MessageForm from '@/components/MessageForm';
+
 
      
  
