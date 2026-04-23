@@ -73,7 +73,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             );
           })
         ) : (
-          <div className="text-center text-gray-500 py-10 border-2 border-dashed">
+          <div className="text-center text-purple-500 py-10 border-2 border-dashed">
             <p>لا توجد ملفات في هذا القسم حالياً.</p>
           </div>
         )}
