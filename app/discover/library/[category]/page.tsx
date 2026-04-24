@@ -62,7 +62,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
         ) : items.length > 0 ? (
           items.map((item) => (
             <div key={item.id} className="flex justify-between items-center bg-white p-4 rounded-lg border shadow-sm">
-              <span className="font-medium text-gray-700">{item.title}</span>
+              <span className="font-medium text-purple-700">{item.title}</span>
               
               <div className="flex gap-2">
                 {/* زر التحميل */}
