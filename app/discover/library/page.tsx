@@ -4,9 +4,9 @@ import Link from 'next/link';
 export default function LibraryIndexPage() {
   const categories = [
     { name: "الكتب (PDF)", path: "pdfs" },
-    { name: "الصوتيات واللطميات", path: "audio" },
+    { name: "الصوتيات واللطميات", path: "audios" }, // تم التصحيح إلى audios
     { name: "الصور والمخطوطات", path: "images" },
-    { name: "الفيديوهات", path: "videos" }, // تم إضافة الفيديوهات هنا
+    { name: "الفيديوهات", path: "videos" },
   ];
 
   return (
@@ -29,4 +29,5 @@ export default function LibraryIndexPage() {
     </main>
   );
 }
+
 
