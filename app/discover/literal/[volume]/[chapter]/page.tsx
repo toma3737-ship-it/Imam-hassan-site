@@ -1,24 +1,42 @@
 import { biographyData } from "@/app/data/biography";
 import BackButton from "@/components/BackButton";
 
-// 1. تعريف هيكل البيانات بشكل كامل
 interface Section { heading: string; text: string; }
 interface Chapter { id: string; title: string; sections: Section[]; }
 interface Door { chapters: Chapter[]; }
 interface VolumeData { doors: Door[]; }
-
-// تعريف نوع الكائن الأساسي الذي يحتوي على الأجزاء
 type BiographyDataType = Record<string, VolumeData>;
 
-export default async function ChapterPage({ params }: { params: { volume: string; chapter: string } }) {
+// هذه الدالة سيعملها Next.js أثناء الـ build
+export async function generateStaticParams() {
+  const data = biographyData as BiographyDataType;
+  const paths: { volume: string; chapter: string }[] = [];
+
+  for (const volumeId in data) {
+    const volumeData = data[volumeId];
+    if (volumeData?.doors) {
+      for (const door of volumeData.doors) {
+        if (door.chapters) {
+          for (const chapter of door.chapters) {
+            paths.push({
+              volume: volumeId,
+              chapter: chapter.id,
+            });
+          }
+        }
+      }
+    }
+  }
+  return paths;
+}
+
+export default async function ChapterPage({ params }: { params: Promise<{ volume: string; chapter: string }> }) {
+  // تذكري: في Next.js 16 يجب التعامل مع params كـ Promise
   const { volume, chapter } = await params;
   
-  // 2. استخدام النوع المصرح عنه بدلاً من any
-  // نقوم بعمل Casting لـ biographyData لتصبح من النوع الذي عرفناه
   const data = biographyData as BiographyDataType;
   const volData = data[volume];
   
-  // 3. البحث عن الفصل المطلوب
   let foundChapter: Chapter | null = null;
   
   if (volData) {
@@ -31,12 +49,10 @@ export default async function ChapterPage({ params }: { params: { volume: string
     }
   }
 
-  // 4. إذا لم نجد الفصل
   if (!foundChapter) {
     return <div className="p-10 text-center">عذراً، هذا الفصل غير موجود.</div>;
   }
 
-  // 5. عرض المحتوى
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 text-right">
        <BackButton />
@@ -55,3 +71,5 @@ export default async function ChapterPage({ params }: { params: { volume: string
     </main>
   );
 }
+
+

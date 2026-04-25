@@ -2,15 +2,23 @@ import Link from 'next/link';
 import { biographyData } from "@/app/data/biography";
 import BackButton from '@/components/BackButton';
 
-// 1. تعريف شكل البيانات ليفهمها TypeScript
+// تعريف شكل البيانات
 interface Chapter { id: string; title: string; }
 interface Door { doorTitle: string; chapters: Chapter[]; }
 interface Volume { title: string; doors: Door[]; }
 
-export default async function VolumePage({ params }: { params: { volume: string } }) {
+// دالة تخبر Next.js بكل المسارات (Volumes) المتاحة للبناء
+export async function generateStaticParams() {
+  const data = biographyData as { [key: string]: Volume };
+  return Object.keys(data).map((volumeId) => ({
+    volume: volumeId,
+  }));
+}
+
+export default async function VolumePage({ params }: { params: Promise<{ volume: string }> }) {
+  // استخدام await لأن params أصبحت Promise في الإصدارات الحديثة
   const { volume } = await params;
   
-  // 2. استخدام "التأكيد" (as) لنخبر TypeScript أن هذا هو الشكل الصحيح للبيانات
   const data = biographyData as { [key: string]: Volume };
   const volData = data[volume];
 
@@ -41,5 +49,5 @@ export default async function VolumePage({ params }: { params: { volume: string 
       ))}
     </main>
   );
-} // هذا القوس الأخير كان مفقوداً عندكِ
+}
 
