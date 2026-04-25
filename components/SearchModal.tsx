@@ -113,7 +113,7 @@ export default function SearchModal({ onClose }: { onClose: () => void }) {
             <input 
               type="text"
               value={dbSearchTerm}
-              placeholder="ابحث في عناوين الكتب والرسائل..."
+              placeholder="ابحث في عناوين الكتب والصوتيات..."
               className="w-full p-4 bg-purple-50 border-2 border-purple-700 rounded-2xl text-purple-700 placeholder:text-purple-300 focus:ring-4 focus:ring-purple-200 outline-none transition-all font-medium"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSupabaseSearch(e.target.value)}
             />
